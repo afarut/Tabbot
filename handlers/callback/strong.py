@@ -7,13 +7,13 @@ from utils import splitter
 from datetime import datetime, timedelta
 
 
-@dp.callback_query_handler(lambda call: "all_history" == call.data)
-async def dislike(call: CallbackQuery):
+@dp.callback_query_handler(lambda call: "all_history" == call.data, state="*")
+async def dislike(call: CallbackQuery, state: FSMContext):
     await call.message.answer("Выберите период", reply_markup=inline.all_history_btns())
 
 
-@dp.callback_query_handler(lambda call: "balance" == call.data)
-async def dislike(call: CallbackQuery):
+@dp.callback_query_handler(lambda call: "balance" == call.data, state="*")
+async def dislike(call: CallbackQuery, state: FSMContext):
     text = ""
     for title, id in db.get_cryptos(call.message.chat.id).items():
         cash = sum(list(map(lambda x: float(round(eval(x['amount']), 2)), db.get_transaction(id).values())))
@@ -21,13 +21,13 @@ async def dislike(call: CallbackQuery):
     await splitter(call.message, text)
 
 
-@dp.callback_query_handler(lambda call: "delete" == call.data)
-async def dislike(call: CallbackQuery):
+@dp.callback_query_handler(lambda call: "delete" == call.data, state="*")
+async def dislike(call: CallbackQuery, state: FSMContext):
     await call.message.answer("Подтвердите удаление всех счётов", reply_markup=inline.yes_btn())
 
 
-@dp.callback_query_handler(lambda call: "see_all_history" == call.data)
-async def dislike(call: CallbackQuery):
+@dp.callback_query_handler(lambda call: "see_all_history" == call.data, state="*")
+async def dislike(call: CallbackQuery, state: FSMContext):
     text = ''
     for title, crypto_id in db.get_cryptos(call.message.chat.id).items():
         for id, data_ in db.get_transaction(crypto_id).items():
@@ -39,12 +39,12 @@ async def dislike(call: CallbackQuery):
                 text += f" ({round(eval(data_['amount']), 2)})"
             text += f" {data_['comment']} \n"
         cash = sum(list(map(lambda x: float(round(eval(x['amount']), 2)), db.get_transaction(crypto_id).values())))
-        #text += f'————————————————\n Текущий баланс счёта ({cash}) 🤑\n'
+        text += f'————————————————\n Баланс счёта {title}: ({cash}) 🤑\n'
     await splitter(call.message, text)
 
 
-@dp.callback_query_handler(lambda call: "see_dayly_history" == call.data)
-async def dislike(call: CallbackQuery):
+@dp.callback_query_handler(lambda call: "see_dayly_history" == call.data, state="*")
+async def dislike(call: CallbackQuery, state: FSMContext):
     text = ''
     for title, crypto_id in db.get_cryptos(call.message.chat.id).items():
         for id, data_ in db.get_transaction(crypto_id).items():
@@ -61,8 +61,8 @@ async def dislike(call: CallbackQuery):
     await splitter(call.message, text)
 
 
-@dp.callback_query_handler(lambda call: "see_week_history" == call.data)
-async def dislike(call: CallbackQuery):
+@dp.callback_query_handler(lambda call: "see_week_history" == call.data, state="*")
+async def dislike(call: CallbackQuery, state: FSMContext):
     text = ''
     for title, crypto_id in db.get_cryptos(call.message.chat.id).items():
         for id, data_ in db.get_transaction(crypto_id).items():
@@ -79,8 +79,8 @@ async def dislike(call: CallbackQuery):
     await splitter(call.message, text)
 
 
-@dp.callback_query_handler(lambda call: "see_month_history" == call.data)
-async def dislike(call: CallbackQuery):
+@dp.callback_query_handler(lambda call: "see_month_history" == call.data, state="*")
+async def dislike(call: CallbackQuery, state: FSMContext):
     text = ''
     for title, crypto_id in db.get_cryptos(call.message.chat.id).items():
         for id, data_ in db.get_transaction(crypto_id).items():
@@ -97,13 +97,13 @@ async def dislike(call: CallbackQuery):
     await splitter(call.message, text)
 
 
-@dp.callback_query_handler(lambda call: "yes" == call.data)
-async def dislike(call: CallbackQuery):
+@dp.callback_query_handler(lambda call: "yes" == call.data, state="*")
+async def dislike(call: CallbackQuery, state: FSMContext):
     for title, id in db.get_cryptos(call.message.chat.id).items():
         db.crypto_del(title)
     await call.message.answer("Все счета удалены!")
 
 
-@dp.callback_query_handler(lambda call: "menu" == call.data)
-async def dislike(call: CallbackQuery):
+@dp.callback_query_handler(lambda call: "menu" == call.data, state="*")
+async def dislike(call: CallbackQuery, state: FSMContext):
     await call.message.answer("Вы в главном меню", reply_markup=reply.menu())
