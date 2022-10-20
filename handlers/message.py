@@ -8,10 +8,10 @@ from filters.states import MainStates
 @dp.message_handler()
 async def text_msg(message: Message):
     s = message.text
-    if s == "Текущие счета":
+    if "Текущие счета" in s:
         data = db.get_cryptos(message.chat.id)
         await message.answer("Текущие счета:", reply_markup=inline.accounts_btns(data))
-    elif s == "Новый счет":
+    elif "Новый счет" in s:
         await message.answer("Введите название нового счёта")
         await MainStates.CRYPTO_CREATE_STATE.set()
     #await message.answer(s)

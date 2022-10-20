@@ -9,7 +9,7 @@ from keyboards import reply
 @dp.message_handler(state=MainStates.CRYPTO_CREATE_STATE)
 async def text_msg(message: Message, state: FSMContext):
 	db.crypto_create(message.chat.id, message.text)
-	await message.answer(f"Счёт {message.text} создан", reply_markup=reply.menu())
+	await message.answer(f"Счёт <b>{message.text}</b> создан", reply_markup=reply.menu())
 	await state.finish()
 
 
@@ -39,3 +39,4 @@ async def text_msg(message: Message, state: FSMContext):
         print(e)
         print(e.with_traceback())
         await message.answer("Введите верный аргумент для этой команды")
+    await state.finish()

@@ -28,7 +28,7 @@ async def dislike(call: CallbackQuery, state: FSMContext):
     await MainStates.EDIT_STATE.set()
     async with state.proxy() as data:
         data["id"] = id
-        await call.message.answer("Введите команду")
+        await call.message.answer("Введите сумму")
 
 
 @dp.callback_query_handler(lambda call: "go_back" in call.data, state="*")
