@@ -17,7 +17,7 @@ async def dislike(call: CallbackQuery, state: FSMContext):
     text = ""
     for title, id in db.get_cryptos(call.message.chat.id).items():
         cash = sum(list(map(lambda x: float(round(eval(x['amount']), 2)), db.get_transaction(id).values())))
-        text += f'Текущий баланс счёта {title}: {cash}\n'
+        text += f'Текущий баланс счёта {title}: {cash} 🤑 \n'
     await splitter(call.message, text)
 
 
@@ -39,7 +39,7 @@ async def dislike(call: CallbackQuery, state: FSMContext):
                 text += f" ({round(eval(data_['amount']), 2)})"
             text += f" {data_['comment']} \n"
         cash = sum(list(map(lambda x: float(round(eval(x['amount']), 2)), db.get_transaction(crypto_id).values())))
-        text += f'————————————————\n Баланс счёта {title}: ({cash}) 🤑\n'
+        text += f'Текущий баланс {title} ({cash}) 🤑\n————————————————\n'
     await splitter(call.message, text)
 
 
@@ -57,7 +57,7 @@ async def dislike(call: CallbackQuery, state: FSMContext):
                     text += f" ({round(eval(data_['amount']), 2)})"
                 text += f" {data_['comment']} \n"
         cash = sum(list(map(lambda x: float(round(eval(x['amount']), 2)), db.get_transaction(crypto_id).values())))
-        #text += f'————————————————\n Текущий баланс счёта ({cash}) 🤑\n'
+        text += f'Текущий баланс {title} ({cash}) 🤑\n————————————————\n'
     await splitter(call.message, text)
 
 
@@ -75,7 +75,7 @@ async def dislike(call: CallbackQuery, state: FSMContext):
                     text += f" ({round(eval(data_['amount']), 2)})"
                 text += f" {data_['comment']} \n"
         cash = sum(list(map(lambda x: float(round(eval(x['amount']), 2)), db.get_transaction(crypto_id).values())))
-        #text += f'————————————————\n Текущий баланс счёта ({cash}) 🤑\n'
+        text += f'Текущий баланс {title} ({cash}) 🤑\n————————————————\n'
     await splitter(call.message, text)
 
 
@@ -93,7 +93,7 @@ async def dislike(call: CallbackQuery, state: FSMContext):
                     text += f" ({round(eval(data_['amount']), 2)})"
                 text += f" {data_['comment']} \n"
         cash = sum(list(map(lambda x: float(round(eval(x['amount']), 2)), db.get_transaction(crypto_id).values())))
-        #text += f'————————————————\n Текущий баланс счёта ({cash}) 🤑\n'
+        text += f'Текущий баланс {title} ({cash}) 🤑\n————————————————\n'
     await splitter(call.message, text)
 
 

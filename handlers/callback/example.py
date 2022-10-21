@@ -18,7 +18,7 @@ async def dislike(call: CallbackQuery, state: FSMContext):
         if str(val) == id:
             title = key
             break
-    await call.message.answer(f"Название: {title}\nБаланс: {cash}", reply_markup=inline.account_btns(id))
+    await call.message.answer(f"Название: {title}\nБаланс: {cash} 🤑", reply_markup=inline.account_btns(id))
 
 
 @dp.callback_query_handler(lambda call: "edit" in call.data, state="*")
@@ -97,7 +97,7 @@ async def dislike(call: CallbackQuery, state: FSMContext):
             text += f" ({round(eval(data_['amount']), 2)})"
         text += f" {data_['comment']} \n"
     cash = sum(list(map(lambda x: float(round(eval(x['amount']), 2)), db.get_transaction(id).values())))
-    text += f'————————————————\n Текущий баланс счёта ({cash}) 🤑'
+    text += f'Текущий баланс счёта ({cash}) 🤑\n————————————————'
     await splitter(call.message, text)
 
 
@@ -116,7 +116,7 @@ async def dislike(call: CallbackQuery, state: FSMContext):
                 text += f" ({round(eval(data_['amount']), 2)})"
             text += f" {data_['comment']} \n"
     cash = sum(list(map(lambda x: float(round(eval(x['amount']), 2)), db.get_transaction(id).values())))
-    text += f'————————————————\n Текущий баланс счёта ({cash}) 🤑'
+    text += f'Текущий баланс счёта ({cash}) 🤑\n————————————————'
     await splitter(call.message, text)
 
 
@@ -135,7 +135,7 @@ async def dislike(call: CallbackQuery, state: FSMContext):
                 text += f" ({round(eval(data_['amount']), 2)})"
             text += f" {data_['comment']} \n"
     cash = sum(list(map(lambda x: float(round(eval(x['amount']), 2)), db.get_transaction(id).values())))
-    text += f'————————————————\n Текущий баланс счёта ({cash}) 🤑'
+    text += f'Текущий баланс счёта ({cash}) 🤑\n————————————————'
     await splitter(call.message, text)
 
 
@@ -154,5 +154,5 @@ async def dislike(call: CallbackQuery, state: FSMContext):
                 text += f" ({round(eval(data_['amount']), 2)})"
             text += f" {data_['comment']} \n"
     cash = sum(list(map(lambda x: float(round(eval(x['amount']), 2)), db.get_transaction(id).values())))
-    text += f'————————————————\n Текущий баланс счёта ({cash}) 🤑'
+    text += f'Текущий баланс счёта ({cash}) 🤑\n————————————————'
     await splitter(call.message, text)

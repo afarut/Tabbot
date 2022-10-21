@@ -39,7 +39,7 @@ def account_btns(id):
 
 def see_history_btns(id):
     keyboard = InlineKeyboardMarkup()
-    btn1 = InlineKeyboardButton('Вся', callback_data=f"see_all_history|{id}")
+    btn1 = InlineKeyboardButton('Все время', callback_data=f"see_all_history|{id}")
     btn2 = InlineKeyboardButton('Сутки', callback_data=f"see_dayly_history|{id}")
     btn3 = InlineKeyboardButton('Неделя', callback_data=f"see_week_history|{id}")
     btn4 = InlineKeyboardButton('Месяц', callback_data=f"see_month_history|{id}")
@@ -52,7 +52,7 @@ def see_history_btns(id):
 
 def all_history_btns():
     keyboard = InlineKeyboardMarkup()
-    btn1 = InlineKeyboardButton('Вся', callback_data=f"see_all_history")
+    btn1 = InlineKeyboardButton('Все время', callback_data=f"see_all_history")
     btn2 = InlineKeyboardButton('Сутки', callback_data=f"see_dayly_history")
     btn3 = InlineKeyboardButton('Неделя', callback_data=f"see_week_history")
     btn4 = InlineKeyboardButton('Месяц', callback_data=f"see_month_history")

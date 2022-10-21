@@ -2,4 +2,4 @@
 .env
 *.pyc
 *.log
-*.sqlite3
+*.swp

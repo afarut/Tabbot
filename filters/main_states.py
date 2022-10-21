@@ -35,8 +35,6 @@ async def text_msg(message: Message, state: FSMContext):
             await message.answer(f"{title} {command} ({round(eval(command), 2)}) запись внесена")
         else:
             await message.answer(f"{title} {command} запись внесена")
+        await state.finish()
     except Exception as e:
-        print(e)
-        print(e.with_traceback())
         await message.answer("Введите верный аргумент для этой команды")
-    await state.finish()
