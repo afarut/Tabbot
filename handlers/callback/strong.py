@@ -17,7 +17,7 @@ async def dislike(call: CallbackQuery, state: FSMContext):
     text = ""
     for title, id in db.get_cryptos(call.message.chat.id).items():
         cash = sum(list(map(lambda x: float(round(eval(x['amount']), 2)), db.get_transaction(id).values())))
-        text += f'Текущий баланс счёта {title}: {cash} 🤑 \n'
+        text += f'Текущий баланс счёта {title}: {cash} 🤑 \n————————————————'
     await splitter(call.message, text)
 
 
